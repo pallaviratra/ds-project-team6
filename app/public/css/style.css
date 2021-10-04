@@ -1,0 +1,29 @@
+body { 
+    background-color: #EDEBEB;
+}
+.navBg{
+    background-color: #990000;
+}
+
+.btn1 {
+    background-color: #990000;
+    color: white;
+}
+  
+.btn1:active, .btn1:hover, .btn1:focus {
+    background-color: #990000;
+    color: goldenrod;
+}  
+
+#refTable{
+    background-color: #990000;
+    color: white;
+}
+
+.row {
+    padding-top: 20px;
+}
+
+#profileImg{
+    padding-top: 80px;
+}
