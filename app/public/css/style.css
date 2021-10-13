@@ -1,8 +1,37 @@
 body { 
     background-color: #EDEBEB;
 }
-.navBg{
+
+.bg { 
+    background: url(../img/bg.jpg) no-repeat center fixed; 
+    background-size: cover;
+}
+
+.main_main {
+    margin:225px;
+    color:white;
+    font-weight: bold;
+    text-align:center;
+}
+
+.main_h1 {
+    font-size:500%;
+    font-weight:bolder;
+    color:white;
+}
+
+.customFooter {
+    position: relative;
+    text-align:center;
+    padding: 1px;
+    padding-bottom: 15px;
+    color:white;
+    background-color:#990000;
+}
+
+.navCustom{
     background-color: #990000;
+    padding-left: 15px;
 }
 
 .btn1 {
@@ -26,4 +55,9 @@ body {
 
 #profileImg{
     padding-top: 80px;
+}
+
+#refereePage{
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
