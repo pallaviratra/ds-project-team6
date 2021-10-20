@@ -38,47 +38,55 @@
           </span>
         </div>
       </nav>
-      <div class="container-fluid">
+
+
+
+
+      <div class="container-fluid" id =refsApp>
         <h4 id="refereePage">Here is a list of Referees under ISRA</h4>
         <table data-sortable class="table table-hover table-responsive-sm">
             <thead id='refTable'>
               <tr>
-                <th scope="col">Name</th>
+                <th scope="col">Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
                 <th scope="col">Age</th>
                 <th scope="col">Referee Grade</th>
                 <th scope="col">Details</th>
               </tr>
             </thead>
+
+
             <tbody>
-              <tr>
-                <td>John Smith</td>
-                <td>35</td>
-                <td>Grade 7</td>
+              <tr v-for= "ref in referees">
+                <td>ref.id</td>
+                <td>ref.fname</td>
+                <td>ref.lname</td>
+                <td>ref.age</td>
+                <td>ref.grade</td>
                 <td><a href="details.html" class="btn btn1">Know More</a></td>
               </tr>
-              <tr>
-                <td>Eric Doe</td>
-                <td>45</td>
-                <td>Grade 5</td>
-                <td><a href="" class="btn btn1">Know More</a></td>
-              </tr>
-              <tr>
-                <td>Brenda Smith</td>
-                <td>30</td>
-                <td>Grade 8</td>
-                <td><a href="" class="btn btn1">Know More</a></td>
-              </tr>
-              <tr>
-                <td>Jared Cooper</td>
-                <td>33</td>
-                <td>Grade 7</td>
-                <td><a href="" class="btn btn1">Know More</a></td>
-              </tr>
-            </tbody>
+            </tbody> 
         </table>
+
         <br>
         <br>
         <br>
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
         <footer class="customFooter">
           <div class="row">
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
