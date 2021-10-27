@@ -47,10 +47,10 @@
                 <h1>John Smith</h1>
             </div>
             <div class="row">
-                <p><span id="heading">Age: </span>35</p>
+                <p><span id="heading">Age:{{ref.age}} </span>35</p>
             </div>
             <div class="row">
-                <p><span id="heading">Referee Grade: </span>Grade 7</p>
+                <p><span id="heading">Referee Grade: {{ref.referee_grade}} </span>Grade 7</p>
             </div>
             <div class="row">
                 <p><span id="heading">Referee Skill: </span>63</p>
@@ -66,6 +66,17 @@
             </div>
       </div>
     </div>
+
+         <tbody>
+              <tr v-for= "ref in referees">
+                <td>{{ref.id}}</td>
+                <td>{{ref.first_name}}</td>
+                <td>{{ref.last_name}}</td>
+                <td><a href="details.html" class="btn btn1">Know More</a></td>
+              </tr>
+            </tbody> 
+        </table>
+
     <footer class="customFooter">
       <div class="row">
         <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>

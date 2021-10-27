@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
@@ -50,8 +51,6 @@
                 <th scope="col">Id</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Age</th>
-                <th scope="col">Referee Grade</th>
                 <th scope="col">Details</th>
               </tr>
             </thead>
@@ -59,12 +58,9 @@
 
             <tbody>
               <tr v-for= "ref in referees">
-                <td>ref.id</td>
-                <td>ref.fname</td>
-                <td>ref.lname</td>
-                <td>ref.age</td>
-                <td>ref.grade</td>
-                <td>ref.details</td>
+                <td>{{ref.id}}</td>
+                <td>{{ref.first_name}}</td>
+                <td>{{ref.last_name}}</td>
                 <td><a href="details.html" class="btn btn1">Know More</a></td>
               </tr>
             </tbody> 
@@ -73,18 +69,6 @@
         <br>
         <br>
         <br>
-
-        
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -103,5 +87,6 @@
       
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="js/referee_name.js"></script>
   </body>
 </html>
