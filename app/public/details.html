@@ -42,40 +42,29 @@
         <div class="col-lg-6" id="profileImg">
           <a href="img/dummy.jpg" target="_blank"><img src="img/dummy.jpg" height="300" class="img-responsive mx-auto d-block"></a>
         </div>
-        <div class="col-lg-6">
-            <div class="row">
-                <h1>John Smith</h1>
-            </div>
-            <div class="row">
-                <p><span id="heading">Age:{{ref.age}} </span>35</p>
-            </div>
-            <div class="row">
-                <p><span id="heading">Referee Grade: {{ref.referee_grade}} </span>Grade 7</p>
-            </div>
-            <div class="row">
-                <p><span id="heading">Referee Skill: </span>63</p>
-            </div>
-            <div class="row">
-                <p><span id="heading">Status: </span>Unassigned</p>
-            </div>
-            <div class="row">
-                <p><span id="heading">Past assigned games: </span>NA</p>
-            </div>
-            <div class="row">
-                <p><span id="heading">Upcoming assigned games: </span>NA</p>
-            </div>
-      </div>
-    </div>
+
+
+      <div  class="col col-8" v-if="selectedStudent">
+          <h1>Offers for {{ selectedStudent.name }}</h1>
 
          <tbody>
               <tr v-for= "ref in referees">
                 <td>{{ref.id}}</td>
                 <td>{{ref.first_name}}</td>
                 <td>{{ref.last_name}}</td>
+                <td>{{ref.age}}</td>
+                <td>{{ref.referee_grade}}</td>
+                <td>{{ref.details}}</td>
+
                 <td><a href="details.html" class="btn btn1">Know More</a></td>
               </tr>
             </tbody> 
         </table>
+
+
+
+
+
 
     <footer class="customFooter">
       <div class="row">

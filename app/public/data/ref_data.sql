@@ -22,3 +22,8 @@ insert into referees (id, first_name, last_name, age, referee_grade, details) va
 insert into referees (id, first_name, last_name, age, referee_grade, details) values (8, 'Chiquita', 'Mart', 46, 23, 'Decentralized maximized synergy');
 insert into referees (id, first_name, last_name, age, referee_grade, details) values (9, 'Vinny', 'Lusk', 44, 65, 'Persevering 4th generation ability');
 insert into referees (id, first_name, last_name, age, referee_grade, details) values (10, 'Delphinia', 'Grouer', 41, 87, 'Visionary leading edge migration');
+
+
+-- SELECT studentname, username, max(salary), count(offers)
+-- FROM student LEFT OUTER JOIN offer ON student.id = offer.studentID
+-- Group by username, name;
