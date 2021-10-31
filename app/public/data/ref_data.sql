@@ -10,6 +10,7 @@ create table refs (
 	last_name VARCHAR(50),
 	age INT,
 	referee_grade INT,
+	referee_skill INT,
 	details VARCHAR(50)
 );
 insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details) values (1, 'Ab', 'Harsnep', 47, 84, 30, 'assistant');
@@ -24,22 +25,22 @@ insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_ski
 insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details) values (10, 'Delphinia', 'Grouer', 41, 87, 79, 'official');
 
 
-create table users (
+create table admin (
 	id INT,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
 	role VARCHAR(50)
 );
-insert into users (id, first_name, last_name, role) values (1, 'Earlie', 'Warrick', 'assignor');
-insert into users (id, first_name, last_name, role) values (2, 'Feliza', 'Phoenix', 'non-assignor');
-insert into users (id, first_name, last_name, role) values (3, 'Evvy', 'Choppin', 'non-assignor');
-insert into users (id, first_name, last_name, role) values (4, 'Lazare', 'Boom', 'non-assignor');
-insert into users (id, first_name, last_name, role) values (5, 'Ranice', 'Wannes', 'assignor');
-insert into users (id, first_name, last_name, role) values (6, 'Eward', 'Jersch', 'non-assignor');
-insert into users (id, first_name, last_name, role) values (7, 'Luelle', 'Fessby', 'non-assignor');
-insert into users (id, first_name, last_name, role) values (8, 'Katuscha', 'McKinnell', 'assignor');
-insert into users (id, first_name, last_name, role) values (9, 'Serene', 'Comettoi', 'non-assignor');
-insert into users (id, first_name, last_name, role) values (10, 'Nadya', 'Bloys', 'non-assignor');
+insert into users (id, first_name, last_name) values (1, 'Earlie', 'Warrick');
+insert into users (id, first_name, last_name) values (2, 'Feliza', 'Phoenix');
+insert into users (id, first_name, last_name) values (3, 'Evvy', 'Choppin');
+insert into users (id, first_name, last_name) values (4, 'Lazare', 'Boom');
+insert into users (id, first_name, last_name) values (5, 'Ranice', 'Wannes');
+insert into users (id, first_name, last_name) values (6, 'Eward', 'Jersch');
+insert into users (id, first_name, last_name) values (7, 'Luelle', 'Fessby');
+insert into users (id, first_name, last_name) values (8, 'Katuscha', 'McKinnell');
+insert into users (id, first_name, last_name) values (9, 'Serene', 'Comettoi');
+insert into users (id, first_name, last_name) values (10, 'Nadya', 'Bloys');
 
 create table game_details (
 	id INT,
