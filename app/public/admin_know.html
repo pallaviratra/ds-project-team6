@@ -51,9 +51,9 @@
                 <th scope="col">Id</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Age</th>
-                <th scope="col">Ref Grade</th>
-                <th scope="col">View Full Profile</th>
+                <th scope="col">Details</th>
+                <th scope="col">Assign Ref To Game</th>
+                <th scope="col">Edit/Delete Ref</th>
               </tr>
             </thead>
 
@@ -63,29 +63,25 @@
                 <td>{{ref.ref_id}}</td>
                 <td>{{ref.first_name}}</td>
                 <td>{{ref.last_name}}</td>
-                <td>{{ref.age}}</td>
-                <td>{{ref.referee_grade}}</td>
-                <td><a href="user_know.html" class="btn btn1">Know More</a></td>
-                <td><a href="admin_know.html" class="btn btn1">Know More</a></td>
-
-               <!-- <td>
+                <td><a href="details.html" class="btn btn1">Know More</a></td>
+               <td>
                   <button type="button" 
                       class="btn btn-outline-secondary btn-sm"
                       v-on:click="selectRefToAssign(ref)">Assign Referee</button>
-                </td> -->
+                </td>
 
-               <!-- <td>
+               <td>
                   <button type="button" 
                       class="btn btn-outline-secondary btn-sm"
                       v-on:click="selectRefToEdit(ref)">Edit</button>
                       <button type="button" class="btn btn-outline-secondary btn-sm"
                       v-on:click="postDeleteRef(ref)">Delete</button>
-                </td> -->
+                </td>
               </tr> 
             </tbody> 
         </table>
 
-         <!-- <h3>{{ selectedRef === null ? "Add " : "Edit " }} Referee</h3>
+         <h3>{{ selectedRef === null ? "Add " : "Edit " }} Referee</h3>
 
             <form v-on:submit.prevent="postRef">
               <div class="mb-3">
@@ -127,7 +123,7 @@
 
                <button type="submit" class="btn btn-primary">{{ selectedRef === null ? "Add " : "Edit " }} Referee</button>
               <button type="button" class="btn btn-outline-secondary" v-if="selectedRef" v-on:click="resetRefForm">Cancel</button>
-            </form> -->
+            </form>
 
         <br>
         <br>
