@@ -52,28 +52,101 @@
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Details</th>
+                <th scope="col">Assign Ref To Game</th>
+                <th scope="col">Edit/Delete Ref</th>
               </tr>
             </thead>
 
 
             <tbody>
-              <tr v-for= "ref in referees">
-                <td>{{ref.id}}</td>
+              <tr v-for= "ref in refs">
+                <td>{{ref.ref_id}}</td>
                 <td>{{ref.first_name}}</td>
                 <td>{{ref.last_name}}</td>
                 <td><a href="details.html" class="btn btn1">Know More</a></td>
-              </tr>
+               <td>
+                  <button type="button" 
+                      class="btn btn-outline-secondary btn-sm"
+                      v-on:click="selectRefToAssign(ref)">Assign Referee</button>
+                </td>
+
+               <td>
+                  <button type="button" 
+                      class="btn btn-outline-secondary btn-sm"
+                      v-on:click="selectRefToEdit(ref)">Edit</button>
+                      <button type="button" class="btn btn-outline-secondary btn-sm"
+                      v-on:click="postDeleteRef(ref)">Delete</button>
+                </td>
+              </tr> 
             </tbody> 
         </table>
+
+         <h3>{{ selectedRef === null ? "Add " : "Edit " }} Referee</h3>
+
+            <form v-on:submit.prevent="postRef">
+              <div class="mb-3">
+                <label for="ref_id" class="form-label">ID</label>
+                <input type="text" v-model="refForm.ref_id"
+                 class="form-control" id="ref_id">
+              </div>
+
+              <div class="mb-3">
+                <label for="fname" class="form-label">First Name</label>
+                <input type="text" v-model="refForm.first_name" class="form-control" id="first_name">
+              </div>
+
+              <div class="mb-3">
+                <label for="lname" class="form-label">Last Name</label>
+                <input type="number" v-model="refForm.last_name" class="form-control" id="last_name">
+              </div>
+
+              <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" v-model="refForm.age" class="form-control" id="age">
+              </div>
+
+               <div class="mb-3">
+                <label for="grade" class="form-label">Referee Grade</label>
+                <input type="number" v-model="refForm.referee_grade" class="form-control" id="age">
+              </div>
+
+               <div class="mb-3">
+                <label for="skill" class="form-label">Referee Skill</label>
+                <input type="number" v-model="refForm.referee_skill" class="form-control" id="skill">
+              </div>
+
+               <div class="mb-3">
+                <label for="details" class="form-label">Referee Details</label>
+                <input type="number" v-model="refForm.referee_skill" class="form-control" id="details">
+              </div>
+
+
+               <button type="submit" class="btn btn-primary">{{ selectedRef === null ? "Add " : "Edit " }} Referee</button>
+              <button type="button" class="btn btn-outline-secondary" v-if="selectedRef" v-on:click="resetRefForm">Cancel</button>
+            </form>
 
         <br>
         <br>
         <br>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
         <footer class="customFooter">
           <div class="row">
+          
+
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
             © 2021 | Indiana Soccer Referees Association | All Rights Reserved
             </div>

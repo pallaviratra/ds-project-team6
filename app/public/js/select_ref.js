@@ -10,8 +10,16 @@ const Refs = {
   computed: {},
   methods: {
 
+    selectStudent(r) {
+          if (r == this.selectedRef) {
+              return;
+          }
+          this.selectedRef = r;
+          this.refs = [];
+          this.fetchIndRefData(this.selectedRef);
+      },
 
-        fetchRefData() {
+      fetchRefData() {
             console.log("A");
             fetch('api/refs/refs.php')
             .then( response => response.json() )
@@ -24,6 +32,20 @@ const Refs = {
                 console.error(err);
             })
             console.log("B");
+        },
+
+      fetchIndRefData(r) {
+            console.log("A");
+            fetch('api/refs/?ref=' + r.ref_id)
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                console.log("C");
+                this.refs = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
         },
 
 
