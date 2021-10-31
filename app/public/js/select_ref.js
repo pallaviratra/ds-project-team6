@@ -10,7 +10,7 @@ const Refs = {
   computed: {},
   methods: {
 
-    selectStudent(r) {
+    selectRef(r) {
           if (r == this.selectedRef) {
               return;
           }
