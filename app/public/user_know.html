@@ -48,7 +48,7 @@
    <div class="row align-items-start">
           <div class="col col-4">
             <!-- <p>Profile information for {{ person.name.first }}</p> -->
-            <div v-for="r in refs" v-on:click="Ref(r)"
+            <div v-for="r in refs" v-on:click="selectRef(r)"
              :class="['ref', {selected: selectedRef && r.ref_id == selectedRef.ref_id}]">
             </div>
           </div>
