@@ -3,6 +3,7 @@ const Refs = {
   data() {
     return {
       refs: [],
+      ref_assignment: [],
       refForm: {},
       selectedRef: null
     }
@@ -17,6 +18,15 @@ const Refs = {
           this.selectedRef = r;
           this.refs = [];
           this.fetchIndRefData(this.selectedRef);
+      },
+
+    selectAssign(r) {
+          if (r == this.selectedRef) {
+              return;
+          }
+          this.selectedRef = r;
+          this.refs = [];
+          this.fetchAssignDetails(this.selectedRef);
       },
 
       fetchRefData() {
@@ -36,7 +46,7 @@ const Refs = {
 
       fetchIndRefData(r) {
             console.log("A");
-            fetch('api/refs/?ref=' + r.ref_id)
+            fetch('api/refs/?refs=' + r.ref_id)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -47,6 +57,22 @@ const Refs = {
                 console.error(err);
             })
         },
+
+
+         fetchAssignDetails(r) {
+            console.log("A");
+            fetch('api/assign/?refs=' + r.ref_id)
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                console.log("C");
+                this.ref_assignment = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+        },
+
 
 
       postRef(evt) {
