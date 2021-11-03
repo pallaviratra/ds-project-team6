@@ -7,6 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+     <script src="https://unpkg.com/vue@next"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/style.css" type="text/css"/>
@@ -43,19 +44,30 @@
           <a href="img/dummy.jpg" target="_blank"><img src="img/dummy.jpg" height="300" class="img-responsive mx-auto d-block"></a>
         </div>
 
-
-  <div id = "refsApp" class="container">
-   <div class="row align-items-start">
+    <form> <input type="button" value="Go back!" onclick="history.back()"> </form>
+    <div class="container-fluid" id =refsApp>
+       <div class="row align-items-start">
           <div class="col col-4">
-            <!-- <p>Profile information for {{ person.name.first }}</p> -->
             <div v-for="r in refs" v-on:click="selectRef(r)"
              :class="['ref', {selected: selectedRef && r.ref_id == selectedRef.ref_id}]">
+          <table data-sortable class="table table-hover table-responsive-sm">
+             <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+              </tr>
+            <tbody>
+               <td><span class="id">{{ r.ref_id }}</span></td>
+              <td><span class="first_name">{{ r.first_name }} {{ r.last_name }}</span></td>
+            </tbody>
+          </table>
             </div>
           </div>
         </div>
 
+
+
       <div class="col col-8" v-if="selectedRef">
-        <h1>Details for {{ selectedRef.first_name }}</h1>
+        <h1>Details for {{ selectedRef.first_name }} {{selectedRef.last_name}}</h1>
 
           
         <h4 id="refereePage">Profile Information</h4>
@@ -65,34 +77,36 @@
                 <th scope="col">Id</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
+                <th scope="col">Age</th>
+                <th scope ="col"> Referee Skill</th>
+                <th scope ="col"> Referee Grade</th>
                 <th scope="col">Details</th>
+                <th scope="col">Change User Info</th>
               </tr>
             </thead>
           
 
              <tbody>
-              <tr v-for= "ref in refs">
-                <td>{{ref.ref_id}}</td>
-                <td>{{ref.first_name}}</td>
-                <td>{{ref.last_name}}</td>
-                <td>{{ref.age}}</td>
-                <td>{{ref.referee_grade}}</td>
-      
-           <!--     <td>
+             <!--    <td>{{ref.ref_id}}</td> -->
+                <td>{{selectedRef.ref_id}}</td>
+                <td>{{selectedRef.first_name}}</td>
+                <td>{{selectedRef.last_name}}</td>
+                <td>{{selectedRef.age}}</td>
+                <td>{{selectedRef.referee_skill}}</td>
+                <td>{{selectedRef.referee_grade}}</td>
+                <td>{{selectedRef.details}}</td>
+                <td>
                   <button type="button" 
                       class="btn btn-outline-secondary btn-sm"
                       v-on:click="selectRefToEdit(ref)">Edit</button>
                       <button type="button" class="btn btn-outline-secondary btn-sm"
                       v-on:click="postDeleteRef(ref)">Delete</button>
-                        </td> -->
+                </td> 
                   </tr> 
                 </tbody> 
 
               </table>
-            </div>
 
-
-      <div class="col col-8" v-if="selectedRef">
 
         <h4 id="refereePage">Current Assignments</h4>
         <table data-sortable class="table table-hover table-responsive-sm">
@@ -102,12 +116,12 @@
                 <th scope="col">Decision</th>
               </tr>
             </thead>
+            <tbody>
+              <td>{{selectedRef.assign_id}}
+            </tbody>
           </table>
         </div>
-
-
-      <div class="col col-8" v-if="selectedRef">
-
+        
         <h4 id="refereePage">Future Games</h4>
         <table data-sortable class="table table-hover table-responsive-sm">
             <thead id='refTable'>
@@ -120,7 +134,7 @@
           </table>
         </div>
 
-      <div class="col col-8" v-if="selectedRef">
+       <div class="col col-8" v-if="selectedRef">
 
         <h4 id="refereePage">Past Games</h4>
         <table data-sortable class="table table-hover table-responsive-sm">
@@ -134,8 +148,8 @@
         </table>
 
       
-           </div>
-        </div>
+    </div>
+  </div>
        
 
  
@@ -145,7 +159,7 @@
         <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
         © 2021 | Indiana Soccer Referees Association | All Rights Reserved
         </div>
-        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+        <div class='col-lg-12 col-md-12 col-sm- 12 col-xs-12'>
         <a href='t&c.html'> Terms & Conditions | </a>
         <a href='pp.html'> Privacy Policy</a>
         </div>

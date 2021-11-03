@@ -3,8 +3,10 @@ const Refs = {
   data() {
     return {
       refs: [],
+      ref_assignment: [],
       refForm: {},
-      selectedRef: null
+      selectedRef: null,
+      fgames: []
     }
   },
   computed: {},
@@ -17,6 +19,15 @@ const Refs = {
           this.selectedRef = r;
           this.refs = [];
           this.fetchIndRefData(this.selectedRef);
+      },
+
+    selectAssign(r) {
+          if (r == this.selectedRef) {
+              return;
+          }
+          this.selectedRef = r;
+          this.refs = [];
+          this.fetchAssignDetails(this.selectedRef);
       },
 
       fetchRefData() {
@@ -36,7 +47,7 @@ const Refs = {
 
       fetchIndRefData(r) {
             console.log("A");
-            fetch('api/refs/?ref=' + r.ref_id)
+            fetch('api/refs/?refs=' + r.ref_id)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -48,6 +59,34 @@ const Refs = {
             })
         },
 
+
+         fetchAssignDetails(r) {
+            console.log("A");
+            fetch('api/assign/?refs=' + r.ref_id)
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                console.log("C");
+                this.ref_assignment = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+        },
+
+        fetchFutureGame(r) {
+          console.log("Fetching future game data for ", r);
+          fetch('/api/games/fgames/?ref=' + r.ref_id)
+          .then( response => response.json() )
+          .then( (responseJson) => {
+              console.log(responseJson);
+              this.fgames = responseJson;
+          })
+          .catch( (err) => {
+              console.error(err);
+          })
+        },
+      
 
       postRef(evt) {
         if (this.selectedRef === null) {
@@ -130,8 +169,8 @@ const Refs = {
             this.resetRefForm();
           });
       },
-      selectRefToEdit(o) {
-          this.selectedRef = o;
+      selectRefToEdit(r) {
+          this.selectedRef = r;
           this.refForm = Object.assign({}, this.selectedRef);
       },
       resetRefForm() {
