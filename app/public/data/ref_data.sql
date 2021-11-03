@@ -13,6 +13,7 @@ create table refs (
 	referee_skill INT,
 	details VARCHAR(50)
 );
+insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details, role) values (0, 'Need Assigned', '', 0, 0, 0, 'Official', 'assignor');
 insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details, role) values (1, 'Ab', 'Harsnep', 47, 84, 30, 'assistant', 'assignor');
 insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details, role) values (2, 'Myrilla', 'Furminger', 27, 6, 40, 'assistant', 'user');
 insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details, role) values (3, 'Karisa', 'Goldis', 56, 15, 95, 'official', 'assignor');
@@ -30,22 +31,23 @@ create table game_details (
 	id INT,
 	date DATE,
 	time VARCHAR(50),
-	field VARCHAR(50)
+	field VARCHAR(50),
+	type VARCHAR(30)
 );
-insert into game_details (game_id, date, time, field) values (1, '3/2/2021', '2:19 PM', 'Purple');
-insert into game_details (game_id, date, time, field) values (2, '2/13/2021', '2:26 PM', 'Orange');
-insert into game_details (game_id, date, time, field) values (3, '12/11/2020', '6:54 PM', 'Green');
-insert into game_details (game_id, date, time, field) values (4, '2/5/2021', '4:46 PM', 'Green');
-insert into game_details (game_id, date, time, field) values (5, '10/7/2021', '2:24 PM', 'Green');
-insert into game_details (game_id, date, time, field) values (6, '1/21/2021', '1:16 PM', 'Black');
-insert into game_details (game_id, date, time, field) values (7, '12/17/2020', '5:50 PM', 'Orange');
-insert into game_details (game_id, date, time, field) values (8, '3/14/2021', '5:10 PM', 'Purple');
-insert into game_details (game_id, date, time, field) values (9, '6/21/2021', '1:55 PM', 'Red');
-insert into game_details (game_id, date, time, field) values (10, '9/4/2021', '1:17 PM', 'Black');
-insert into game_details (game_id, date, time, field) values (11, '5/23/2021', '3:13 PM', 'Black');
-insert into game_details (game_id, date, time, field) values (12, '2/19/2021', '4:12 PM', 'Purple');
-insert into game_details (game_id, date, time, field) values (13, '7/6/2021', '12:54 PM', 'Orange');
-insert into game_details (game_id, date, time, field) values (14, '11/29/2020', '11:21 AM', 'Orange');
+insert into game_details (game_id, date, time, field, type) values (1, '3/2/2021', '2:19 PM', 'Purple', 'high school');
+insert into game_details (game_id, date, time, field, type) values (2, '2/13/2021', '2:26 PM', 'Orange', 'youth');
+insert into game_details (game_id, date, time, field, type) values (3, '12/11/2020', '6:54 PM', 'Green', 'collegiate');
+insert into game_details (game_id, date, time, field, type) values (4, '2/5/2021', '4:46 PM', 'Green', 'youth');
+insert into game_details (game_id, date, time, field, type) values (5, '10/7/2021', '2:24 PM', 'Green', 'youth');
+insert into game_details (game_id, date, time, field, type) values (6, '1/21/2021', '1:16 PM', 'Black', 'high school');
+insert into game_details (game_id, date, time, field, type) values (7, '12/17/2020', '5:50 PM', 'Orange', 'middle school');
+insert into game_details (game_id, date, time, field, type) values (8, '3/14/2021', '5:10 PM', 'Purple', 'high school');
+insert into game_details (game_id, date, time, field, type) values (9, '6/21/2021', '1:55 PM', 'Red', 'youth');
+insert into game_details (game_id, date, time, field, type) values (10, '9/4/2021', '1:17 PM', 'Black', 'youth');
+insert into game_details (game_id, date, time, field, type) values (11, '5/23/2021', '3:13 PM', 'Black', 'youth');
+insert into game_details (game_id, date, time, field, type) values (12, '2/19/2021', '4:12 PM', 'Purple', 'collegiate');
+insert into game_details (game_id, date, time, field, type) values (13, '7/6/2021', '12:54 PM', 'Orange', 'middle school');
+insert into game_details (game_id, date, time, field, type) values (14, '11/29/2020', '11:21 AM', 'Orange', 'collegiate');
 
 
 create table ref_assignment (
