@@ -47,7 +47,6 @@
 
 
       <div class="container-fluid" id =refsApp>
-        <div class="col col-4">
             <div v-for="r in refs">
           <table data-sortable class="table table-hover table-responsive-sm">
             <thead id='refTable'>
@@ -55,6 +54,8 @@
                 <th scope="col">Id</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">RefereeGrade</th>
                 <th scope="col">Details</th>
 
               </tr>
@@ -64,15 +65,16 @@
                 <td>{{r.ref_id}}</td>
                 <td>{{r.first_name}}</td>
                 <td>{{r.last_name}}</td>
-                <td><button v-on:click="selectRef(r)"
+                <td>{{r.age}}</td>
+                <td>{{r.referee_grade}}</td>
+                <td><button class="btn btn-outline-secondary btn-sm" v-on:click="selectRef(r)"
              :class="['ref', {selected: selectedRef && r.ref_id == selectedRef.ref_id}]">View Profile</button></td>
               </tr> 
             </tbody> 
         </table>
 
       </div>
-    </div>
-    <div class="col col-8" v-if="selectedRef">
+    <div class="col col-12" v-if="selectedRef">
         <h1>Details for {{ selectedRef.first_name }} {{selectedRef.last_name}}</h1>
 
           
@@ -84,8 +86,8 @@
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Age</th>
-                <th scope ="col"> Referee Skill</th>
-                <th scope ="col"> Referee Grade</th>
+                <th scope ="col">Referee Skill</th>
+                <th scope ="col">Referee Grade</th>
                 <th scope="col">Details</th>
                 <th scope="col">Change User Info</th>
               </tr>
@@ -93,7 +95,6 @@
           
 
            <tbody>
-           <!--    <td>{{ref.ref_id}}</td> -->
               <td>{{selectedRef.ref_id}}</td>
               <td>{{selectedRef.first_name}}</td>
               <td>{{selectedRef.last_name}}</td>
@@ -104,9 +105,9 @@
               <td>
                 <button type="button" 
                     class="btn btn-outline-secondary btn-sm"
-                    v-on:click="selectRefToEdit(ref)">Edit</button>
+                    v-on:click="selectRefToEdit(r)">Edit</button>
                     <button type="button" class="btn btn-outline-secondary btn-sm"
-                    v-on:click="postDeleteRef(ref)">Delete</button>
+                    v-on:click="postDeleteRef(r)">Delete</button>
               </td> 
             </tbody> 
         </table>
@@ -128,12 +129,17 @@
         <h4 id="refereePage">Future Games</h4>
         <table data-sortable class="table table-hover table-responsive-sm">
             <thead id='refTable'>
-              <tr>
+              <tr v-for="f in fgames">
                 <th scope="col">Field</th>
                 <th scope="col">Date</th>
                 <th scope="col">Time</th>
               </tr>
             </thead>
+            <tbody>
+              <td>{{f.ref_id}}</td>
+              <!-- <td>{{f.first_name}}</td>
+              <td>{{f.last_name}}</td>
+              <td>{{selectedRef.age}}</td> -->
           </table>
 
         <h4 id="refereePage">Past Games</h4>
@@ -145,6 +151,12 @@
                 <th scope="col">Time</th>
               </tr>
             </thead>
+            <tbody>
+              <td>{{selectedRef.ref_id}}</td>
+              <td>{{selectedRef.first_name}}</td>
+              <td>{{selectedRef.last_name}}</td>
+              <td>{{selectedRef.age}}</td> 
+            </tbody>
         </table>
       </div>
 
