@@ -61,3 +61,24 @@ body {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+#gamePage{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.btn-sm {
+    margin-right: 10px;
+    color: #990000;
+    border-color: #990000;
+}
+
+#form{
+    padding-bottom: 20px;
+}
+
+#refereeForm {
+
+    display:none;
+    
+    }

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+
+    <title>ISRA</title>
+  </head>
+  <body>
+    <div class='container-fluid'>
+      <nav class="navbar sticky-top justify-content-center navbar-expand-lg navbar-dark navCustom">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+          <!-- Image source: https://www.flaticon.com/free-icon/soccer-ball_53283 -->
+          Indiana Soccer Referees Association
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myMenu">
+          <div class="navbar-nav me-auto">
+            <a class="nav-link " href="index.html">Home</a>
+            <a class="nav-link active" href="ref_assignor.html">Referees<span class="sr-only"></span></a>
+            <a class="nav-link" href="games.html">Schedule<span class="sr-only"></span></a>
+            <a class="nav-link" href="#">Reports</a>
+          </div>
+          <span class="navbar-text">
+            <a class="nav-link" href="login.html">Login</a>
+          </span>
+          <span class="navbar-text">
+            <a class="nav-link" href="sign_up.html">Sign up</a>
+          </span>
+        </div>
+      </nav>
+
+      <div class="container-fluid" id ="refsApp">
+          <div class="row">
+              <h4 id="refereePage">List of Referees</h4>
+          </div>
+        <!-- <div v-for="r in refs"> -->
+          <table data-sortable class="table table-hover table-responsive-sm">
+            <thead id='refTable'>
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Age</th>
+                <th scope="col">Referee Grade</th>
+                <th scope ="col">Referee Skill</th>
+                <th scope ="col">View games</th>
+                <th scope="col">Change details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="r in refs">
+                <td>{{r.ref_id}}</td>
+                <td>{{r.first_name}}</td>
+                <td>{{r.last_name}}</td>
+                <td>{{r.age}}</td>
+                <td>{{r.referee_grade}}</td>
+                <td>{{r.referee_skill}}</td>
+                <td><button class="btn btn-outline-secondary btn-sm" v-on:click="selectRef(r)"
+             :class="['ref', {selected: selectedRef && r.ref_id == selectedRef.ref_id}]">View</button></td>
+                <td> 
+                    <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="selectRefToEdit(r)">Edit</button>
+                    <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="postDeleteRef(r)">Delete</button>
+                </td>
+              </tr> 
+            </tbody> 
+          </table>
+          <form v-on:submit.prevent="postRef">
+            <div class="row">
+              <div class="col">
+                <input type="text" v-model="refForm.first_name" class="form-control" placeholder="First Name" id="first_name" required="required">
+              </div>
+              <div class="col" id="form">
+                <input type="text" v-model="refForm.last_name" class="form-control" placeholder="Last Name" id="last_name" required="required">
+              </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                  <input type="number" v-model="refForm.age" class="form-control" placeholder="Age" id="age" required="required">
+                </div>
+                <div class="col" id="form">
+                  <input type="number" v-model="refForm.referee_grade" class="form-control" placeholder="Referee Grade" id="referee_grade" required="required">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                  <input type="number" v-model="refForm.referee_skill" class="form-control" placeholder="Referee Skill" id="referee_skill" required="required">
+                </div>
+                <div class="col" id="form">
+                  <input type="Text" v-model="refForm.details" class="form-control" placeholder="Title" id="details" required="required">
+                </div>
+            </div>
+            <button class="btn btn1" type="submit">{{ selectedRef === null ? "Add" : "Edit"}}</button>
+            <button class="btn btn1" type="button" v-if="selectedRef" v-on:click="resetRefForm">Cancel</button>
+          </form>
+        </div>
+
+        <footer class="customFooter">
+            <div class="row">
+              <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+              © 2021 | Indiana Soccer Referees Association | All Rights Reserved
+              </div>
+              <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
+              <a href='t&c.html'> Terms & Conditions | </a>
+              <a href='pp.html'> Privacy Policy</a>
+              </div>
+            </div>
+        </footer>
+    </div>
+        
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="js/formJQuery.js"></script>
+      <script src="js/select_ref.js"></script>
+    </body>
+  </html>

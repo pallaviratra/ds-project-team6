@@ -1,0 +1,14 @@
+
+
+        fetchFutureGame(r) {
+            console.log("Fetching future game data for ", r);
+            fetch('/api/games/fgames/?ref=' + r.ref_id)
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.fgames = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+          },
