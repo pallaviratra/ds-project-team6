@@ -48,7 +48,7 @@
 
 
       <div class="container-fluid" id ="refsApp">
-        <div v-for="r in refs">
+        <!-- <div v-for="r in refs"> -->
           <table data-sortable class="table table-hover table-responsive-sm">
             <thead id='refTable'>
               <tr>
@@ -58,11 +58,10 @@
                 <th scope="col">Age</th>
                 <th scope="col">Referee Grade</th>
                 <th scope="col">Details</th>
-
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr v-for="r in refs">
                 <td>{{r.ref_id}}</td>
                 <td>{{r.first_name}}</td>
                 <td>{{r.last_name}}</td>
@@ -73,7 +72,7 @@
               </tr> 
             </tbody> 
           </table>
-        </div>
+        <!-- </div> -->
         <div class="col col-12" v-if="selectedRef">
           <h1>Details for {{ selectedRef.first_name }} {{selectedRef.last_name}}</h1>
           <h4 id="refereePage">Profile Information</h4>
@@ -101,8 +100,8 @@
               <td>{{selectedRef.referee_skill}}</td>
               <td>{{selectedRef.details}}</td>
               <td>
-                <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="selectRefToEdit(r)">Edit</button>
-                <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="postDeleteRef(r)">Delete</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="selectRefToEdit(selectedRef)">Edit</button>
+                <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="postDeleteRef(selectedRef)">Delete</button>
               </td> 
             </tbody> 
           </table>
@@ -181,7 +180,7 @@
               </tbody>
           </table>
         </div>
-
+      </div>
 
   
 
@@ -244,8 +243,6 @@
 
         <footer class="customFooter">
           <div class="row">
-          
-
             <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
             © 2021 | Indiana Soccer Referees Association | All Rights Reserved
             </div>
