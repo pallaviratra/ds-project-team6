@@ -18,7 +18,7 @@ const Refs = {
           }
           this.selectedRef = r;
           this.refs = [];
-          this.fetchIndRefData(this.selectedRef);
+          // this.fetchIndRefData(this.selectedRef);
       },
 
     selectAssign(r) {
@@ -31,22 +31,20 @@ const Refs = {
       },
 
       fetchRefData() {
-            console.log("A");
+            console.log("Loading refs")
             fetch('api/refs/refs.php')
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
-                console.log("C");
                 this.refs = responseJson;
             })
             .catch( (err) => {
                 console.error(err);
             })
-            console.log("B");
         },
 
       fetchIndRefData(r) {
-            console.log("A");
+            // console.log("A");
             fetch('api/refs/?refs=' + r.ref_id)
             .then( response => response.json() )
             .then( (responseJson) => {
@@ -60,34 +58,19 @@ const Refs = {
         },
 
 
-         fetchAssignDetails(r) {
-            console.log("A");
-            fetch('api/assign/?refs=' + r.ref_id)
-            .then( response => response.json() )
-            .then( (responseJson) => {
-                console.log(responseJson);
-                console.log("C");
-                this.ref_assignment = responseJson;
-            })
-            .catch( (err) => {
-                console.error(err);
-            })
-        },
-
-        fetchFutureGame(r) {
-          console.log("Fetching future game data for ", r);
-          fetch('/api/games/fgames/?ref=' + r.ref_id)
-          .then( response => response.json() )
-          .then( (responseJson) => {
-              console.log(responseJson);
-              this.fgames = responseJson;
-          })
-          .catch( (err) => {
-              console.error(err);
-          })
-        },
-      
-
+      fetchAssignDetails(r) {
+        console.log("A");
+        fetch('api/assign/?refs=' + r.ref_id)
+        .then( response => response.json() )
+        .then( (responseJson) => {
+            console.log(responseJson);
+            console.log("C");
+            this.ref_assignment = responseJson;
+        })
+        .catch( (err) => {
+            console.error(err);
+        })
+      },
       postRef(evt) {
         if (this.selectedRef === null) {
             this.postNewRef(evt);
@@ -95,9 +78,6 @@ const Refs = {
             this.postEditRef(evt);
         }
       },
-
-
-
       postNewRef(evt) {
         // this.offerForm.studentId = this.selectedStudent.id;
 
@@ -139,22 +119,21 @@ const Refs = {
           .then( response => response.json() )
           .then( json => {
             console.log("Returned from post:", json);
-            // TODO: test a result was returned!
             this.refs = json;
 
             // reset the form
             this.resetRefForm();
           });
       },
-      postDeleteRef(o) {
-        if (!confirm("Are you sure you want to delete the offer from ")) {
+      postDeleteRef(r) {
+        if (!confirm("Are you sure you want to delete this referee information ")) {
           return;
         }
-        console.log("Delete!", o);
+        console.log("Delete!", r);
 
         fetch('api/refs/delete.php', {
             method:'POST',
-            body: JSON.stringify(o),
+            body: JSON.stringify(r),
             headers: {
               "Content-Type": "application/json; charset=utf-8"
             }
@@ -162,11 +141,11 @@ const Refs = {
           .then( response => response.json() )
           .then( json => {
             console.log("Returned from post:", json);
-            // TODO: test a result was returned!
             this.refs = json;
 
             // reset the form
             this.resetRefForm();
+            // this.$router.push('/referees.html');
           });
       },
       selectRefToEdit(r) {
@@ -178,8 +157,12 @@ const Refs = {
           this.refForm = {};
       }
   },
+  // mounted: function(){
+  //   this.postEditRef()
+  // },
   created() {
   this.fetchRefData();
+  // this.postEditRef();
   }
 
 }
