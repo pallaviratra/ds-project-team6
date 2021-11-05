@@ -14,7 +14,8 @@ create table refs (
 	details VARCHAR(50),
 	role VARCHAR(50)
 );
-insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details, role) values (0, '', '',0, 0, 0, '', '');
+
+insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details, role) values (0, 'Need Assigned', '', 0, 0, 0, 'Official', 'assignor');
 insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details, role) values (1, 'Ab', 'Harsnep', 47, 84, 30, 'assistant', 'assignor');
 insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details, role) values (2, 'Myrilla', 'Furminger', 27, 6, 40, 'assistant', 'user');
 insert into refs (ref_id, first_name, last_name, age, referee_grade, referee_skill, details, role) values (3, 'Karisa', 'Goldis', 56, 15, 95, 'official', 'assignor');
@@ -35,6 +36,7 @@ create table game_details (
 	date DATE,
 	time VARCHAR(50),
 	field VARCHAR(50),
+
 	level VARCHAR(50)
 
 );
@@ -52,7 +54,6 @@ insert into game_details (game_id, date, time, field, level) values (11, '5/23/2
 insert into game_details (game_id, date, time, field, level) values (12, '2/19/2021', '4:12 PM', 'Purple','low');
 insert into game_details (game_id, date, time, field, level) values (13, '7/6/2021', '12:54 PM', 'Orange','high');
 insert into game_details (game_id, date, time, field, level) values (14, '11/29/2020', '11:21 AM', 'Orange','high');
-
 
 DROP TABLE IF EXISTS ref_assignment;
 
