@@ -3,177 +3,113 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-     <script src="https://unpkg.com/vue@next"></script>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css" type="text/css"/>
-
-    <title>ISRA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+<!--     <link href="css/styles.css" rel="stylesheet" type="text/css">
+ -->    
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <title>Hello, world!</title>
   </head>
   <body>
-    <div class='container-fluid'>
-      <nav class="navbar sticky-top justify-content-center navbar-expand-lg navbar-dark navCustom">
-        <a class="navbar-brand" href="index.html">
-          <img src="img/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-          <!-- Image source: https://www.flaticon.com/free-icon/soccer-ball_53283 -->
-          Indiana Soccer Referees Association
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myMenu">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="myMenu">
-          <div class="navbar-nav me-auto">
-            <a class="nav-link " href="index.html">Home</a>
-            <a class="nav-link active" href="referees.html">Referees<span class="sr-only"></span></a>
-            <a class="nav-link" href="#">Reports</a>
-          </div>
-          <span class="navbar-text">
-            <a class="nav-link" href="login.html">Login</a>
-          </span>
-          <span class="navbar-text">
-            <a class="nav-link" href="sign_up.html">Sign up</a>
-          </span>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Features</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Pricing</a>
+            </li>
+          </ul>
         </div>
       </nav>
-      <div class="row">
-        <div class="col-lg-6" id="profileImg">
-          <a href="img/dummy.jpg" target="_blank"><img src="img/dummy.jpg" height="300" class="img-responsive mx-auto d-block"></a>
+
+          
+    <div class="container-fluid" id="refsApp">
+
+        <form v-on:submit.prevent="postNewRef">
+
+              <div class="mb-3">
+                <label for="first_name" class="form-label">First Name</label>
+                <input type="text" v-model="refForm.first_name"
+                 class="form-control" id="title">
+              </div>
+              <div class="mb-3">
+                <label for="last_name" class="form-label">Last Name</label>
+                <input type="text" v-model="refForm.last_name" class="form-control" id="last_name">
+              </div>
+              <div class="mb-3">
+                <label for="age" class="form-label">Age</label>
+                <input type="number" v-model="refForm.age" class="form-control" id="age">
+              </div>
+               <div class="mb-3">
+                <label for="referee_grade" class="form-label">Referee Grade</label>
+                <input type="text" v-model="refForm.referee_grade" class="form-control" id="referee_grade">
+              </div>
+               <div class="mb-3">
+                <label for="referee_skill" class="form-label">Referee Skill</label>
+                <input type="number" v-model="refForm.referee_skill" class="form-control" id="referee_skill">
+              </div>
+              <div class="mb-3">
+                <label for="msrp" class="form-label">Details</label>
+                <input type="text" v-model="refForm.details" class="form-control" id="details">
+              </div>
+               <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <input type="text" v-model="refForm.role" class="form-control" id="role">
+              </div>
+               <button type="submit" class="btn btn-primary">Add Ref</button>
+              <button type="button" class="btn btn-outline-secondary" v-if="selectedRef" v-on:click="resetRefForm">Cancel</button>
+            </form>
+        
+
+
+           <table class="table">
+             <thead>
+                <tr>
+                  <th scope="col">id</th>
+                  <th scope="col">Title</th>
+                  <th scope="col">Author</th>
+                  <th scope="col">Year Published</th>
+                  <th scope="col">Publisher</th>
+                  <th scope="col">Page Count</th>
+                  <th scope="col">MSRP</th>
+                </tr>
+             </thead>
+                <tbody>
+                    <tr v-for="ref in Refs">
+                        <td>{{ ref.first_name }}</td>
+                        <td>{{ ref.last_name }}</td>
+                        <td>{{ ref.age }}</td>
+                        <td>{{ ref.referee_grade }}</td>
+                        <td>{{ ref.referee_skill }}</td>
+                        <td>{{ ref.details }}</td>
+                        <td>{{ ref.role }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
         </div>
 
-    <form> <input type="button" value="Go back!" onclick="history.back()"> </form>
 
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
+    <script src="js/new_ref.js"></script>
+  </body>
 
-
+</html>
 
     
-    <div class="container-fluid" id =refsApp>
-       <div class="row align-items-start">
-          <div class="col col-4">
-            <div v-for="r in refs" v-on:click="selectRef(r)"
-             :class="['ref', {selected: selectedRef && r.ref_id == selectedRef.ref_id}]">
-          <table data-sortable class="table table-hover table-responsive-sm">
-             <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-              </tr>
-            <tbody>
-               <td><span class="id">{{ r.ref_id }}</span></td>
-              <td><span class="first_name">{{ r.first_name }} {{ r.last_name }}</span></td>
-            </tbody>
-          </table>
-            </div>
-          </div>
-        </div>
-
-
-
-      <div class="col col-8" v-if="selectedRef">
-        <h1>Details for {{ selectedRef.first_name }} {{selectedRef.last_name}}</h1>
-
-          
-        <h4 id="refereePage">Profile Information</h4>
-        <table data-sortable class="table table-hover table-responsive-sm">
-            <thead id='refTable'>
-              <tr>
-                <th scope="col">Id</th>
-                <th scope="col">First Name</th>
-                <th scope="col">Last Name</th>
-                <th scope="col">Age</th>
-                <th scope ="col"> Referee Skill</th>
-                <th scope ="col"> Referee Grade</th>
-                <th scope="col">Details</th>
-                <th scope="col">Change User Info</th>
-              </tr>
-            </thead>
-          
-
-             <tbody>
-             <!--    <td>{{ref.ref_id}}</td> -->
-                <td>{{selectedRef.ref_id}}</td>
-                <td>{{selectedRef.first_name}}</td>
-                <td>{{selectedRef.last_name}}</td>
-                <td>{{selectedRef.age}}</td>
-                <td>{{selectedRef.referee_skill}}</td>
-                <td>{{selectedRef.referee_grade}}</td>
-                <td>{{selectedRef.details}}</td>
-                <td>
-                  <button type="button" 
-                      class="btn btn-outline-secondary btn-sm"
-                      v-on:click="selectRefToEdit(ref)">Edit</button>
-                      <button type="button" class="btn btn-outline-secondary btn-sm"
-                      v-on:click="postDeleteRef(ref)">Delete</button>
-                </td> 
-                  </tr> 
-                </tbody> 
-
-              </table>
-
-
-        <h4 id="refereePage">Current Assignments</h4>
-        <table data-sortable class="table table-hover table-responsive-sm">
-            <thead id='refTable'>
-              <tr>
-                <th scope="col">Assignment ID</th>
-                <th scope="col">Decision</th>
-              </tr>
-            </thead>
-            <tbody>
-              <td>{{selectedRef.assign_id}}
-            </tbody>
-          </table>
-        </div>
-        
-        <h4 id="refereePage">Future Games</h4>
-        <table data-sortable class="table table-hover table-responsive-sm">
-            <thead id='refTable'>
-              <tr>
-                <th scope="col">Field</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-              </tr>
-            </thead>
-          </table>
-        </div>
-
-       <div class="col col-8" v-if="selectedRef">
-
-        <h4 id="refereePage">Past Games</h4>
-        <table data-sortable class="table table-hover table-responsive-sm">
-            <thead id='refTable'>
-              <tr>
-                <th scope="col">Field</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-              </tr>
-            </thead>
-        </table>
-
-      
-    </div>
-  </div>
-       
-
- 
-
-    <footer class="customFooter">
-      <div class="row">
-        <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12'>
-        © 2021 | Indiana Soccer Referees Association | All Rights Reserved
-        </div>
-        <div class='col-lg-12 col-md-12 col-sm- 12 col-xs-12'>
-        <a href='t&c.html'> Terms & Conditions | </a>
-        <a href='pp.html'> Privacy Policy</a>
-        </div>
-      </div>
-    </footer>
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="js/select_ref.js"></script>
-
-  </body>
-</html>
