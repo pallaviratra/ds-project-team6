@@ -8,12 +8,12 @@ $db = DbConnection::getConnection();
 
 
 // Step 2: Create & run the query
-$sql = 'SELECT * FROM ref_assignment';
+$sql = 'SELECT * FROM game_details';
 $vars = [];
 
 if (isset($_GET['refs'])) {
   // This is an example of a parameterized query
-  $sql = 'SELECT game_id FROM ref_assignment WHERE ref_id = ?';// parametrized queries 
+  $sql = 'SELECT game_id FROM game_details WHERE game_id = ?';// parametrized queries 
   $vars = [ $_GET['refs'] ]; 
 }
 

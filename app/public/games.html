@@ -30,6 +30,8 @@
             <a class="nav-link " href="index.html">Home</a>
             <a class="nav-link " href="referees.html">Referees</a>
             <a class="nav-link active" href="games.html">Schedule<span class="sr-only"></span></a>
+            <a class="nav-link active" href="assign.html">Referee Assignment Records<span class="sr-only"></span></a>
+
             <a class="nav-link" href="#">Reports</a>
           </div>
           <span class="navbar-text">
@@ -45,7 +47,7 @@
 
 
       <div class="container-fluid" id =refsApp>
-        <h4 id="gamePage">List og Games</h4>
+        <h4 id="gamePage">List of Games</h4>
         <table data-sortable class="table table-hover table-responsive-sm">
             <thead id='gameTable'>
               <tr>
@@ -63,12 +65,12 @@
 
 
             <tbody>
-              <tr v-for= "ref in refs">
-                <td>{{ref.ref_id}}</td>
-                <td>{{ref.first_name}}</td>
-                <td>{{ref.last_name}}</td>
-                <td>{{ref.age}}</td>
-                <td>{{ref.referee_grade}}</td>
+              <tr v-for= "game in game_details">
+                <td>{{game.game_id}}</td>
+                <td>{{game.first_name}}</td>
+                <td>{{game.last_name}}</td>
+                <td>{{game.age}}</td>
+                <td>{{game.referee_grade}}</td>
                 <td><a href="user_know.html" class="btn btn1">Know More</a></td>
                 <td><a href="admin_know.html" class="btn btn1">Know More</a></td>
 
@@ -89,9 +91,7 @@
             </tbody> 
         </table>
 
-         <!-- <h3>{{ selectedRef === null ? "Add " : "Edit " }} Referee</h3>
-
-            <form v-on:submit.prevent="postRef">
+            <!-- <form v-on:submit.prevent="postRef">
               <div class="mb-3">
                 <label for="ref_id" class="form-label">ID</label>
                 <input type="text" v-model="refForm.ref_id"
@@ -127,7 +127,7 @@
                 <label for="details" class="form-label">Referee Details</label>
                 <input type="number" v-model="refForm.referee_skill" class="form-control" id="details">
               </div>
-
+ -->
 
                <button type="submit" class="btn btn-primary">{{ selectedRef === null ? "Add " : "Edit " }} Referee</button>
               <button type="button" class="btn btn-outline-secondary" v-if="selectedRef" v-on:click="resetRefForm">Cancel</button>

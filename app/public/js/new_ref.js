@@ -85,10 +85,10 @@ const Refs = {
             this.resetRefForm();
           });
       },
-      selectRefToEdit(o) {
-          this.selectedRef = o;
-          this.refForm = Object.assign({}, this.selectedRef);
-      },
+      // selectRefToEdit(o) {
+      //     this.selectedRef = o;
+      //     this.refForm = Object.assign({}, this.selectedRef);
+      // },
       resetRefForm() {
           this.selectedRef = null;
           this.refForm = {};

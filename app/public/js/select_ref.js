@@ -32,7 +32,7 @@ const Refs = {
 
       fetchRefData() {
             console.log("A");
-            fetch('api/refs/refs.php')
+            fetch('api/refs/')
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
