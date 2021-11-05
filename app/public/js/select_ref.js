@@ -5,7 +5,8 @@ const Refs = {
       refs: [],
       ref_assignment: [],
       refForm: {},
-      selectedRef: null
+      selectedRef: null,
+      fgames: []
     }
   },
   computed: {},
@@ -73,7 +74,19 @@ const Refs = {
             })
         },
 
-
+        fetchFutureGame(r) {
+          console.log("Fetching future game data for ", r);
+          fetch('/api/games/fgames/?ref=' + r.ref_id)
+          .then( response => response.json() )
+          .then( (responseJson) => {
+              console.log(responseJson);
+              this.fgames = responseJson;
+          })
+          .catch( (err) => {
+              console.error(err);
+          })
+        },
+      
 
       postRef(evt) {
         if (this.selectedRef === null) {
@@ -156,8 +169,8 @@ const Refs = {
             this.resetRefForm();
           });
       },
-      selectRefToEdit(o) {
-          this.selectedRef = o;
+      selectRefToEdit(r) {
+          this.selectedRef = r;
           this.refForm = Object.assign({}, this.selectedRef);
       },
       resetRefForm() {
