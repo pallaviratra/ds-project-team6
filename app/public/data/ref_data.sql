@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS refs;
 
 
 create table refs (
-	id INT,
+	ref_id INT,
 	first_name VARCHAR(50),
 	last_name VARCHAR(50),
 	age INT,
