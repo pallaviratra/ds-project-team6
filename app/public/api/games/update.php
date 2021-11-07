@@ -31,24 +31,20 @@ $db = DbConnection::getConnection();
 // Step 2: Create & run the query
 // Note the use of parameterized statements to avoid injection
 $stmt = $db->prepare(
-  'UPDATE refs SET
-    first_name = ?,
-    last_name = ?,
-    age = ?,
-    referee_grade = ?,
-    referee_skill = ?,
-    ref_role = ?
-  WHERE ref_id = ?'
+  'UPDATE game_details SET
+    date = ?,
+    time = ?,
+    field = ?,
+    level = ?
+  WHERE game_id = ?'
 );
 
 $stmt->execute([
-  $_POST['first_name'],
-  $_POST['last_name'],
-  $_POST['age'],
-  $_POST['referee_grade'],
-  $_POST['referee_skill'],
-  $_POST['ref_role'],
-  $_POST['ref_id']
+  $_POST['date'],
+  $_POST['time'],
+  $_POST['field'],
+  $_POST['level'],
+  $_POST['game_id']
 ]);
 
 
@@ -61,4 +57,4 @@ $stmt->execute([
 // just in case the data changed by entering it
 // header('HTTP/1.1 303 See Other');
 header('HTTP/1.1 303 See Other');
-header('Location: ../refs/');
+header('Location: ../games/?game=' . $_POST['game_id']);

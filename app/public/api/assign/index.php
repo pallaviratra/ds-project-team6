@@ -5,26 +5,26 @@ require 'class/DbConnection.php';
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-$sql = 'SELECT * FROM ref_assignment';
-$vars = [];
+// $sql = 'SELECT * FROM ref_assignment';
+// $vars = [];
 
-if (isset($_GET['refs'])) {
-  // This is an example of a parameterized query
-  $sql = 'SELECT * FROM ref_assignment WHERE ref_id = ?';
+if (isset($_GET['game'])) {
+  $sql = 'SELECT game_details.date, game_details.time, ref_assignment.assign_status, ref_assignment.ref_assign_id, refs.first_name, ref_assignment.assign_id, ref_assignment.game_assign_id
+  FROM game_details 
+  INNER JOIN ref_assignment ON game_details.game_id = ref_assignment.game_assign_id
+  INNER JOIN refs on ref_assignment.ref_assign_id = refs.ref_id
+  WHERE ref_assignment.game_assign_id = ?;';
 
-  //NOT THIS WAY
-  // $sql = 'SELECT * FROM offer WHERE studentId = ' . $_GET['student'];
-
-  $vars = [ $_GET['refs'] ];
+  $vars = [ $_GET['game'] ];
 }
 
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$refs = $stmt->fetchAll();
+$assignedGames = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
-$json = json_encode($refs, JSON_PRETTY_PRINT);
+$json = json_encode($assignedGames, JSON_PRETTY_PRINT);
 
 // Step 4: Output
 header('Content-Type: application/json');

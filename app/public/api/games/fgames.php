@@ -1,29 +1,24 @@
 <?php
-
 require 'class/DbConnection.php';
-
 
 // Step 1: Get a datase connection from our helper class
 $db = DbConnection::getConnection();
 
-
 // Step 2: Create & run the query
-$sql = 'SELECT * FROM ref_assignment';
-$vars = [];
+if (isset($_GET['ref'])) {
+  $sql = 'SELECT game_details.date, game_details.time, ref_assignment.assign_status, ref_assignment.ref_assign_id, game_details.field, game_details.level FROM game_details INNER JOIN ref_assignment ON game_details.game_id = ref_assignment.game_assign_id WHERE game_details.date > CURDATE() and ref_assignment.ref_assign_id = ? ;';
+// $sql = 'SELECT game_details.date, game.time, ref_assignment.assign_status, ref_assignments.ref_id FROM game_details INNER JOIN ref_assignment ON game_details.id = ref_assignment.game_id WHERE game_details.date > CURDATE() and ref_assignment.ref_id = ? ;';
+  $vars = [ $_GET['ref'] ];
 
-if (isset($_GET['refs'])) {
-  // This is an example of a parameterized query
-  $sql = 'SELECT game_id FROM ref_assignment WHERE ref_id = ?';// parametrized queries 
-  $vars = [ $_GET['refs'] ]; 
 }
 
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$offers = $stmt->fetchAll();
+$fgames = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
-$json = json_encode($offers, JSON_PRETTY_PRINT);
+$json = json_encode($fgames, JSON_PRETTY_PRINT);
 
 // Step 4: Output
 header('Content-Type: application/json');

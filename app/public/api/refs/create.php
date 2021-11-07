@@ -31,15 +31,11 @@ $db = DbConnection::getConnection();
 // Step 2: Create & run the query
 // Note the use of parameterized statements to avoid injection
 $stmt = $db->prepare(
-  'UPDATE refs SET
-    first_name = ?,
-    last_name = ?,
-    age = ?,
-    referee_grade = ?,
-    referee_skill = ?,
-    ref_role = ?
-  WHERE ref_id = ?'
+    'INSERT INTO refs (first_name, last_name, age, referee_grade, referee_skill, ref_role)
+  VALUES (?, ?, ?, ?, ?, ?)'
 );
+
+ 
 
 $stmt->execute([
   $_POST['first_name'],
@@ -47,8 +43,7 @@ $stmt->execute([
   $_POST['age'],
   $_POST['referee_grade'],
   $_POST['referee_skill'],
-  $_POST['ref_role'],
-  $_POST['ref_id']
+  $_POST['ref_role']
 ]);
 
 

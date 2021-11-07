@@ -2,6 +2,11 @@ body {
     background-color: #EDEBEB;
 }
 
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .bg { 
     background: url(../img/bg.jpg) no-repeat center fixed; 
     background-size: cover;
@@ -15,7 +20,7 @@ body {
 }
 
 .main_h1 {
-    font-size:500%;
+    font-size:300%;
     font-weight:bolder;
     color:white;
 }
@@ -51,6 +56,10 @@ body {
 
 .row {
     padding-top: 20px;
+}
+
+#editHead {
+    padding-bottom: 20px;
 }
 
 #profileImg{
