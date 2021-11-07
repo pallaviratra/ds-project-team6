@@ -29,11 +29,14 @@ require("class/DbConnection.php");
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-// Note the use of parameterized statements to avoid injection
-$stmt = $db->prepare( 'DELETE FROM refs WHERE ref_id= ?' );
+$stmt = $db->prepare(
+    'INSERT INTO ref_assignment (game_assign_id, ref_assign_id, assign_status) VALUES (?, ?, ?)'
+);
 
 $stmt->execute([
-  $_POST['ref_id']
+  $_POST['game_assign_id'],
+  $_POST['ref_assign_id'],
+  $_POST['assign_status']
 ]);
 
 // Get auto-generated PK from DB
@@ -43,5 +46,6 @@ $stmt->execute([
 // Step 4: Output
 // Here, instead of giving output, I'm redirecting to the SELECT API,
 // just in case the data changed by entering it
+// header('HTTP/1.1 303 See Other');
 header('HTTP/1.1 303 See Other');
-header('Location: ../refs/');
+header('Location: ../assign/?game=' . $_POST['game_assign_id']);

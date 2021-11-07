@@ -37,7 +37,7 @@ $stmt = $db->prepare(
     age = ?,
     referee_grade = ?,
     referee_skill = ?,
-    details = ?
+    ref_role = ?
   WHERE ref_id = ?'
 );
 
@@ -47,7 +47,7 @@ $stmt->execute([
   $_POST['age'],
   $_POST['referee_grade'],
   $_POST['referee_skill'],
-  $_POST['details'],
+  $_POST['ref_role'],
   $_POST['ref_id']
 ]);
 
@@ -61,4 +61,4 @@ $stmt->execute([
 // just in case the data changed by entering it
 // header('HTTP/1.1 303 See Other');
 header('HTTP/1.1 303 See Other');
-header('Location: ../books/');
+header('Location: ../refs/');

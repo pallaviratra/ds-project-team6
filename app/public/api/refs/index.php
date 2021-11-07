@@ -8,16 +8,6 @@ $db = DbConnection::getConnection();
 $sql = 'SELECT * FROM refs';
 $vars = [];
 
-if (isset($_GET['refs'])) {
-  // This is an example of a parameterized query
-  $sql = 'SELECT * FROM refs WHERE ref_id = ?';
-
-  //NOT THIS WAY
-  // $sql = 'SELECT * FROM offer WHERE studentId = ' . $_GET['student'];
-
-  $vars = [ $_GET['refs'] ];
-}
-
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 

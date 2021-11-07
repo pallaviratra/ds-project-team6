@@ -5,30 +5,27 @@ require 'class/DbConnection.php';
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-// $sql = 'SELECT 
-//     name, username, 
-//     MAX(salary) AS maxSalary, 
-//     COUNT(salary) AS offerCount
-// FROM student LEFT OUTER JOIN 
-//     offer ON student.id = offer.studentId
-// GROUP BY username, name';
+// $sql = 'SELECT * FROM ref_assignment';
+// $vars = [];
 
-$sql ='SELECT 
-    ref_id,g.game_id, g.date, g.time, g.field, assign_status, r.first_name, r.last_name
-FROM ref_assignment as ra 
-LEFT OUTER JOIN game_details as g ON g.game_id = game_id
-LEFT OUTER JOIN refs as r ON r.ref_id = ref_id
-WHERE g.date = '2021-02-05';
+if (isset($_GET['game'])) {
+  $sql = 'SELECT game_details.date, game_details.time, ref_assignment.assign_status, ref_assignment.ref_assign_id, refs.first_name, ref_assignment.assign_id, ref_assignment.game_assign_id
+  FROM game_details 
+  INNER JOIN ref_assignment ON game_details.game_id = ref_assignment.game_assign_id
+  INNER JOIN refs on ref_assignment.ref_assign_id = refs.ref_id
+  WHERE ref_assignment.game_assign_id = ?;';
 
-
-$vars = [];
+  $vars = [ $_GET['game'] ];
+}
 
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$offers = $stmt->fetchAll();
+$assignedGames = $stmt->fetchAll();
 
+// Step 3: Convert to JSON
+$json = json_encode($assignedGames, JSON_PRETTY_PRINT);
 
-$json = json_encode($offers, JSON_PRETTY_PRINT);
+// Step 4: Output
 header('Content-Type: application/json');
 echo $json;
