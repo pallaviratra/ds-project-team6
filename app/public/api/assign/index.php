@@ -18,7 +18,7 @@ $sql ='SELECT
 FROM ref_assignment as ra 
 LEFT OUTER JOIN game_details as g ON g.game_id = game_id
 LEFT OUTER JOIN refs as r ON r.ref_id = ref_id
-GROUP BY g.field, r.ref_id';
+WHERE g.date = '2021-02-05';
 
 
 $vars = [];
@@ -31,23 +31,4 @@ $offers = $stmt->fetchAll();
 
 $json = json_encode($offers, JSON_PRETTY_PRINT);
 header('Content-Type: application/json');
-// echo $json;
-?>
-
-<!doctype html>
-<html>
-    <head>
-    <title> HTML PAGE </title>
-    <meta charset="utf-8">
-    </head>
-    <body>
-        <select>
-            <option>
-        <?php foreach( $offers as $row ){
-        echo $row['first_name'];
- }
-?>
-</option>
-</select>
-    </body>
-</html>
+echo $json;

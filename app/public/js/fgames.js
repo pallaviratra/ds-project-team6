@@ -29,12 +29,29 @@ const Assign = {
 
 
    selectAssign(r) {
-          if (r == this.selectedAssign) {
+          if (r === this.selectedAssign) {
               return;
           }
           this.selectedAssign = r;
           this.game_details = [];
-          this.fetchOfferData(this.selectedStudent);
+          this.fetchOfferData(this.selectedAssign);
+      },
+
+
+     fetchOfferData(r) {
+          console.log("Fetching offer data for ", r);
+          fetch('/api/games/?games=' + r.ref_id)
+          .then( response => response.json() )
+          .then( (responseJson) => {
+              console.log(responseJson);
+              this.game_details = responseJson;
+          })
+          .catch( (err) => {
+              console.error(err);
+          })
+          .catch( (error) => {
+              console.error(error);
+          });
       },
 
   },
