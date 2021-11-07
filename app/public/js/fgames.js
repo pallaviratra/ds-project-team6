@@ -2,6 +2,9 @@ const Assign = {
   data() {
     return {
       ref_assignment: [],
+      game_details: [],
+      selectedAssign: null,
+
     }
   },
   computed: {},
@@ -22,6 +25,18 @@ const Assign = {
             })
             console.log("B");
         },
+
+
+
+   selectAssign(r) {
+          if (r == this.selectedAssign) {
+              return;
+          }
+          this.selectedAssign = r;
+          this.game_details = [];
+          this.fetchOfferData(this.selectedStudent);
+      },
+
   },
   created() {
     this.fetchAssignData();

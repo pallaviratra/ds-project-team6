@@ -5,6 +5,14 @@ require 'class/DbConnection.php';
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
+// $sql = 'SELECT 
+//     name, username, 
+//     MAX(salary) AS maxSalary, 
+//     COUNT(salary) AS offerCount
+// FROM student LEFT OUTER JOIN 
+//     offer ON student.id = offer.studentId
+// GROUP BY username, name';
+
 $sql ='SELECT 
     ref_id,g.game_id, g.date, g.time, g.field, assign_status, r.first_name, r.last_name
 FROM ref_assignment as ra 
@@ -14,72 +22,32 @@ GROUP BY g.field, r.ref_id';
 
 
 $vars = [];
+
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
+
 $offers = $stmt->fetchAll();
 
 
-
- ?>
-        <h2>Competitions</h2>
-<article>
-    <p id="TableHeader1">Fixture Information</p>
-    <P>Select Round and Game number from the dropdown list under Round Number.</P>
-    <br>
-
-<br><form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-<p id="TableHeader2">Round Number &nbsp; &nbsp; 
-<select style="width:250px"></select>&emsp;&emsp;<input class="button" 
-type="submit" name="Get" value="Get Data"></p>
-
-<p id="TableHeader2">Referee ID</p>
-<table class="table">
-<tr><td><b>Ref ID:</b></td>
-<?php foreach( $offers as $row ){
-    echo "<td>";
-    echo $row['ref_id'];
- }
-?>
-</tr>
-
-<tr>
-<td><b>Game Date:</b></td>.
-<?php foreach( $offers as $row ){
-    echo "<td>";
-    echo $row['date'];
- }
- ?>
-</tr>
-
-<tr>
-<td><b>Game Field:</b></td>
-<?php foreach( $offers as $row ){
-    echo "<td>";
-    echo $row['field'];
- }
- ?>
-</tr>
-
-<tr>
-<td><b>Referee Name:</b></td>
-<?php foreach( $offers as $row ){
-    echo "<td>";
-    echo $row['first_name'];
-   }
- ?> 
-</tr>
-
-
- ?> 
-            <td colspan="2><?php echo $message; ?>"></td>
-</tr>
-
- </table>
-
-</form>
-
-// Step 4: Output
-
 $json = json_encode($offers, JSON_PRETTY_PRINT);
 header('Content-Type: application/json');
-echo $json;
+// echo $json;
+?>
+
+<!doctype html>
+<html>
+    <head>
+    <title> HTML PAGE </title>
+    <meta charset="utf-8">
+    </head>
+    <body>
+        <select>
+            <option>
+        <?php foreach( $offers as $row ){
+        echo $row['first_name'];
+ }
+?>
+</option>
+</select>
+    </body>
+</html>

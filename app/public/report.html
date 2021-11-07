@@ -84,6 +84,19 @@
 
 
 
+      <div id="offerApp" class="container">
+        <div class="row align-items-start">
+          <div class="col col-4">
+            <div v-for="r in ref_assignment" v-on:click="selectStudent(r)"
+             :class="['student', {selected: selectedAssign && r.ref_id == selectedAssign.ref_id}]">
+              <select>
+              <option>
+              <span class="userName">{{ s.username }}</span><br>
+              <span class="studentName">{{ s.name }}</span>
+            </option>
+          </select>
+            </div>
+          </div>
 
 
        <div id="assignApp" class="container">
