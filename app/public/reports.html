@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue@next"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css"/>
+
+    <title>ISRA</title>
+  </head>
+  <body>
+    <div class='container-fluid'>
+      <nav class="navbar sticky-top justify-content-center navbar-expand-lg navbar-dark navCustom">
+        <a class="navbar-brand" href="index.html">
+          <img src="img/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+          <!-- Image source: https://favicon.io/emoji-favicons/soccer-ball/ -->
+          Indiana Soccer Referees Association
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="myMenu">
+          <div class="navbar-nav me-auto">
+            <a class="nav-link " href="index.html">Home</a>
+            <a class="nav-link" href="ref_assignor.html">Referees<span class="sr-only"></span></a>
+            <a class="nav-link" href="games_assignor.html">Schedule<span class="sr-only"></span></a>
+            <a class="nav-link active" href="reports.html">Reports<span class="sr-only"></span></a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="container" id ="refsApp">
+          <div class="row">
+              <div class="col-6">
+                  <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click= "openDateRep()">
+                      List all games assigned to a referee between a given date range
+                  </button>
+              </div>
+              <div class="col-6">
+                <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click= "fetchFutureUnassData()">
+                      List future games with at least one "unassigned" position
+                  </button>
+              </div>
+          </div>
+          <div v-if="dateRep">
+            <div class = "row">
+                <h5>All games assigned to a referee between a given date range</h5>
+            </div>
+            <form v-on:submit.prevent="fetchDateRep">
+                <div class = "row">
+                  <label>Pick the Referee</label>
+                    <select class="form-select" v-model="dateRepForm.ref_assign_id" aria-label="Pick the Referee" id="ref_assign_id" required="required">
+                    <option v-for="r in refs" :value= 'r.ref_id' >{{ r.first_name }} {{ r.last_name }}</option>
+                    </select>
+                </div>
+                <div class = "row">
+                    <div class = "col-6">
+                      <label>Start Date</label>
+                        <input type="date" v-model="dateRepForm.startDate" class="form-control" placeholder="Start Date" id="date" required="required">
+                    </div>
+                    <div class = "col-6">
+                      <label>End Date</label>
+                        <input type="date" v-model="dateRepForm.endDate" class="form-control" placeholder="End Date" id="date" required="required">
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "col-3">
+                        <button class="btn btn-outline-secondary btn-sm">View Report</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div v-if="viewDateRep">
+            <table class="table table-hover table-responsive-sm">
+                <thead>
+                    <tr>
+                      <th scope="col">Date</th>
+                      <th scope="col">Time</th>
+                      <th scope="col">Field</th>
+                      <th scope="col">Level</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for= "a in assignedRefGamesRep">
+                      <td>{{a.date}}</td>
+                      <td>{{a.time}}</td>
+                      <td>{{a.field}}</td>
+                      <td>{{a.level}}</td>
+                    </tr>
+                  </tbody>
+            </table>
+            <button class="btn btn-outline-secondary btn-sm" v-if="dateRep != 'null'"><a v-bind:href="'/api/games/dateRep.php/?ref_assign_id=' + dateRepForm.ref_assign_id + '&startDate=' + dateRepForm.startDate + '&endDate=' + dateRepForm.endDate + '&format=csv'" download>Export as CSV</a></button>
+          </div>
+
+          <div v-if="futDateRep">
+            <table class="table table-hover table-responsive-sm">
+                <thead>
+                    <tr>
+                      <th scope="col">Field</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr v-for= "g in futUnass">
+                      <td>{{g.field}}</td>
+                      <td>{{g.date}}</td>
+                      <td>{{g.time}}</td>
+                    </tr>
+                  </tbody>
+            </table>
+            <button class="btn btn-outline-secondary btn-sm"><a href="/api/games/futDateRep.php/?format=csv" download>Export as CSV</a></button>
+          </div>
+     </div>
+     <footer class="customFooter">
+          <div class='container'>
+          © 2021 | Indiana Soccer Referees Association | All Rights Reserved
+          </div>
+     </footer>
+    </div>
+    
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

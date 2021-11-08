@@ -12,31 +12,25 @@ try {
     exit;
 }
 
-require("class/DbConnection.php"
+require("class/DbConnection.php");
 
 // Step 1: Get a datase connection from our helper class
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
 $stmt = $db->prepare(
-  'UPDATE refs SET
-    first_name = ?,
-    last_name = ?,
-    age = ?,
-    referee_grade = ?,
-    referee_skill = ?,
-    ref_role = ?
-  WHERE ref_id = ?'
+  'UPDATE ref_assignment SET
+    ref_assign_id = ?,
+    assign_status = ?,
+    game_assign_id = ?
+    WHERE assign_id = ?'
 );
 
 $stmt->execute([
-  $_POST['first_name'],
-  $_POST['last_name'],
-  $_POST['age'],
-  $_POST['referee_grade'],
-  $_POST['referee_skill'],
-  $_POST['ref_role'],
-  $_POST['ref_id']
+  $_POST['ref_assign_id'],
+  $_POST['assign_status'],
+  $_POST['game_assign_id'],
+  $_POST['assign_id']
 ]);
 
 
@@ -46,4 +40,4 @@ $stmt->execute([
 
 // Step 4: Output
 header('HTTP/1.1 303 See Other');
-header('Location: ../refs/');
+header('Location: ../assign/?game=' . $_POST['game_assign_id']);

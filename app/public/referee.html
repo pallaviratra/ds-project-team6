@@ -14,7 +14,6 @@
     <title>ISRA</title>
   </head>
   <body>
-    <div class="bg  h-auto d-inline-block">
       <div class='container-fluid'>
         <nav class="navbar sticky-top justify-content-center navbar-expand-lg navbar-dark navCustom">
           <a class="navbar-brand" href="index.html">
@@ -28,34 +27,30 @@
           <div class="collapse navbar-collapse" id="myMenu">
             <div class="navbar-nav me-auto">
                 <a class="nav-link active" href="index.html">Home<span class="sr-only"></span></a>
+                <a class="nav-link" href="ref_user.html">Referees</a>
+                <a class="nav-link" href="assign.html">Assignments</a>
             </div>
           </div>
         </nav>
 
-        <main class='main_main'>
-          <div class='row'>
-             <h1 class='main_h1'> Indiana Soccer Referees Association</h1> 
-          </div>
-          <div class="row">
-            <div class="col">
-            </div>
-            <div class="col">
-              <button class="btn btn1" onclick="window.location.href='referee.html'">User</button>
-            </div>
-            <div class="col">
-              <button class="btn btn1" onclick="window.location.href='assignor.html'">Assignor</button>
-            </div>
-            <div class="col">
-            </div>
-            </div>
-        </main>
-      </div> 
-      <footer class="customFooter">
         <div class='container'>
-          © 2021 | Indiana Soccer Referees Association | All Rights Reserved
-        </div>
-      </footer>
-    </div>
+          <div class='row'>
+            <h4> Welcome User!</h4>
+            <div class='col-4'>
+              <button class='btn btn1' onclick="window.location.href='ref_user.html'">View Referees</button>
+            </div>
+            <div class='col-4'>
+              <button class='btn btn1' onclick="window.location.href='assign.html'">View assignment requests</button>
+            </div>
+          </div>
+        </div> 
+
+        <footer class="customFooter">
+            <div class='container'>
+            © 2021 | Indiana Soccer Referees Association | All Rights Reserved
+            </div>
+        </footer>
+      </div>
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
   </body>
