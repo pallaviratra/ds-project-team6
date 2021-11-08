@@ -8,7 +8,7 @@ body {
 }
 
 .bg { 
-    background: url(../img/bg.jpg) no-repeat center fixed; 
+    background: url(https://www.krqe.com/wp-content/uploads/sites/12/2021/09/AdobeStock_117200764.jpeg) no-repeat center fixed;
     background-size: cover;
 }
 
@@ -49,11 +49,6 @@ body {
     color: goldenrod;
 }  
 
-#refTable{
-    background-color: #990000;
-    color: white;
-}
-
 .row {
     padding-top: 20px;
 }
@@ -71,11 +66,6 @@ body {
     padding-bottom: 20px;
 }
 
-#gamePage{
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
 .btn-sm {
     margin-right: 10px;
     color: #990000;
@@ -86,8 +76,10 @@ body {
     padding-bottom: 20px;
 }
 
-#refereeForm {
+a {
+    color: #990000;
+}
 
-    display:none;
-    
-    }
+a:hover{
+    color: white;
+}

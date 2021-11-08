@@ -19,7 +19,7 @@
       <nav class="navbar sticky-top justify-content-center navbar-expand-lg navbar-dark navCustom">
         <a class="navbar-brand" href="index.html">
           <img src="img/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-          <!-- Image source: https://www.flaticon.com/free-icon/soccer-ball_53283 -->
+          <!-- Image source: https://favicon.io/emoji-favicons/soccer-ball/ -->
           Indiana Soccer Referees Association
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myMenu">
@@ -28,22 +28,66 @@
         <div class="collapse navbar-collapse" id="myMenu">
           <div class="navbar-nav me-auto">
             <a class="nav-link " href="index.html">Home</a>
-            <a class="nav-link" href="ref_assignor.html">Referees<span class="sr-only"></span></a>
-            <!-- <a class="nav-link" href="games.html">Schedule<span class="sr-only"></span></a> -->
+            <a class="nav-link" href="ref_user.html">Referees<span class="sr-only"></span></a>
             <a class="nav-link active" href="assign.html">Assignments</a>
           </div>
-          <span class="navbar-text">
-            <a class="nav-link" href="login.html">Login</a>
-          </span>
-          <span class="navbar-text">
-            <a class="nav-link" href="sign_up.html">Sign up</a>
-          </span>
         </div>
       </nav>
 
       <div class="container" id =refsApp>
         <div class="row">
-            <h4>New Assignment Request</h4>
+            <h4>Future Games</h4>
         </div>
-        
+
+        <form v-on:submit.prevent="fetchRefAssignDetails(r)":class="['assignedRef', {selected: selectedRefAssign}]">
+          <div class = "row">
+            <label>Pick the Referee</label>
+            <select class="form-select" v-model="refAssignForm.ref_assign_id" aria-label="Pick the Referee" id="ref_assign_id" required="required">
+              <option v-for="r in refs" :value= 'r.ref_id' >{{ r.first_name }} {{ r.last_name }}</option>
+            </select>
+          </div>
+          <div class = "row">
+            <div class = "col-3">
+              <button class="btn btn-outline-secondary btn-sm">View Games</button>
+            </div>
+          </div>
+        </form>
+        <div v-if="selectedRefAssign">
+          <table class="table table-hover table-responsive-sm">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+                <th scope="col">Field</th>
+                <th scope="col">Level</th>
+                <th scope="col">Referee Status</th>
+                <th scope="col">Assignment</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for= "a in assignedRefGames">
+                <td>{{a.date}}</td>
+                <td>{{a.time}}</td>
+                <td>{{a.field}}</td>
+                <td>{{a.level}}</td>
+                <td>{{a.assign_status}}</td>
+                <td>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" v-if="a.assign_status !='Accepted'" v-on:click="postDecline(a)">Decline</button>
+                </td>
+              </tr> 
+            </tbody> 
+          </table>
+        </div>
+      </div>
+      <footer class="customFooter">
+        <div class='container'>
+          © 2021 | Indiana Soccer Referees Association | All Rights Reserved
+         </div>
+      </footer>
     </div>
+    
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

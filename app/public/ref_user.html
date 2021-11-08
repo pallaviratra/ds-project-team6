@@ -19,7 +19,7 @@
       <nav class="navbar sticky-top justify-content-center navbar-expand-lg navbar-dark navCustom">
         <a class="navbar-brand" href="index.html">
           <img src="img/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-          <!-- Image source: https://www.flaticon.com/free-icon/soccer-ball_53283 -->
+          <!-- Image source: https://favicon.io/emoji-favicons/soccer-ball/ -->
           Indiana Soccer Referees Association
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myMenu">
@@ -28,16 +28,9 @@
         <div class="collapse navbar-collapse" id="myMenu">
           <div class="navbar-nav me-auto">
             <a class="nav-link " href="index.html">Home</a>
-            <a class="nav-link active" href="ref_assignor.html">Referees<span class="sr-only"></span></a>
-            <!-- <a class="nav-link" href="games.html">Schedule<span class="sr-only"></span></a> -->
+            <a class="nav-link active" href="ref_user.html">Referees<span class="sr-only"></span></a>
             <a class="nav-link" href="assign.html">Assignments</a>
           </div>
-          <span class="navbar-text">
-            <a class="nav-link" href="login.html">Login</a>
-          </span>
-          <span class="navbar-text">
-            <a class="nav-link" href="sign_up.html">Sign up</a>
-          </span>
         </div>
       </nav>
 
@@ -45,16 +38,14 @@
           <div class="row">
               <h4 id="refereePage">List of Referees</h4>
           </div>
-        <!-- <div v-for="r in refs"> -->
-          <table data-sortable class="table table-hover table-responsive-sm">
-            <thead id='refTable'>
+          <table class="table table-hover table-responsive-sm">
+            <thead>
               <tr>
                 <th scope="col">Id</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Age</th>
                 <th scope="col">Referee Grade</th>
-                <!-- <th scope ="col">View games</th> -->
               </tr>
             </thead>
             <tbody>
@@ -64,27 +55,20 @@
                 <td>{{r.last_name}}</td>
                 <td>{{r.age}}</td>
                 <td>{{r.referee_grade}}</td>
-                <!-- <td><button class="btn btn-outline-secondary btn-sm" v-on:click="selectRef(r)" :class="['ref', {selected: selectedRef && r.ref_id == selectedRef.ref_id}]">View</button></td> -->
               </tr> 
             </tbody> 
           </table>
         </div>
 
         <footer class="customFooter">
-            <div class="row">
-              <div class='container'>
+            <div class='container'>
               © 2021 | Indiana Soccer Referees Association | All Rights Reserved
-              </div>
-              <div class='container'>
-              <a href='t&c.html'> Terms & Conditions | </a>
-              <a href='pp.html'> Privacy Policy</a>
-              </div>
             </div>
         </footer>
     </div>
         
       <!-- Bootstrap JS -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-      <script src="js/select_ref.js"></script>
+      <script src="js/index.js"></script>
     </body>
   </html>

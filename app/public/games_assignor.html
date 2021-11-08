@@ -19,7 +19,7 @@
       <nav class="navbar sticky-top justify-content-center navbar-expand-lg navbar-dark navCustom">
         <a class="navbar-brand" href="index.html">
           <img src="img/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-          <!-- Image source: https://www.flaticon.com/free-icon/soccer-ball_53283 -->
+          <!-- Image source: https://favicon.io/emoji-favicons/soccer-ball/ -->
           Indiana Soccer Referees Association
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myMenu">
@@ -27,17 +27,11 @@
         </button>
         <div class="collapse navbar-collapse" id="myMenu">
           <div class="navbar-nav me-auto">
-            <a class="nav-link " href="index.html">Home</a>
-            <a class="nav-link " href="ref_assignor.html">Referees</a>
+            <a class="nav-link" href="index.html">Home</a>
+            <a class="nav-link" href="ref_assignor.html">Referees</a>
             <a class="nav-link active" href="games.html">Schedule<span class="sr-only"></span></a>
-            <a class="nav-link" href="#">Reports</a>
+            <a class="nav-link" href="reports.html">Reports<span class="sr-only"></span></a>
           </div>
-          <span class="navbar-text">
-            <a class="nav-link" href="login.html">Login</a>
-          </span>
-          <span class="navbar-text">
-            <a class="nav-link" href="sign_up.html">Sign up</a>
-          </span>
         </div>
       </nav>
       <div class="container" id =refsApp>
@@ -55,28 +49,39 @@
           <div class="row">
             <h5 id="editHead">Add New Game</h5>
             <div class="col" id="form">
+              <label>Game Date</label>
               <input type="date" v-model="gameForm.date" class="form-control" placeholder="date" id="date" required="required">
             </div>
             <div class="col">
+              <label>Game Time</label>
               <input type="time" v-model="gameForm.time" class="form-control" placeholder="time" id="time" required="required">
             </div>
           </div>
           <div class="row">  
             <div class="col" id="form">
-              <input type="text" v-model="gameForm.field" class="form-control" placeholder="Field" id="field" required="required">
+              <label>Field</label>
+              <select class="form-select" v-model="gameForm.field" aria-label="Field" id="field" required="required">
+                <option value="Green">Green</option>
+                <option value="Purple">Purple</option>
+                <option value="Orange">Orange</option>
+              </select>
             </div>
             <div class="col" id="form">
-              <input type="text" v-model="gameForm.level" class="form-control" placeholder="Level" id="level" required="required">
+              <label>Game Level</label>
+              <select class="form-select" v-model="gameForm.level" aria-label="Level" id="level" required="required">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
             </div>
           </div>
           <button class="btn btn-outline-secondary btn-sm" type="submit">Add</button>
           <button class="btn btn-outline-secondary btn-sm" type="button" v-if="selectedGameAdd" v-on:click="resetGameForm">Cancel</button>
         </form>
 
-        <table data-sortable class="table table-hover table-responsive-sm">
+        <table class="table table-hover table-responsive-sm">
             <thead id='gameTable'>
               <tr>
-                <th scope="col">Game Id</th>
                 <th scope="col">Date</th>
                 <th scope="col">Time</th>
                 <th scope="col">Field</th>
@@ -87,7 +92,6 @@
             </thead>
             <tbody>
               <tr v-for= "g in games">
-                <td>{{g.game_id}}</td>
                 <td>{{g.date}}</td>
                 <td>{{g.time}}</td>
                 <td>{{g.field}}</td>
@@ -107,45 +111,54 @@
           <div class="row">
             <h5 id="editHead">Edit Game</h5>
             <div class="col" id="form">
+              <label>Game Date</label>
               <input type="date" v-model="gameForm.date" class="form-control" placeholder="date" id="date" required="required">
             </div>
             <div class="col">
+              <label>Game Time</label>
               <input type="time" v-model="gameForm.time" class="form-control" placeholder="time" id="time" required="required">
             </div>
           </div>
           <div class="row">  
             <div class="col" id="form">
-              <input type="text" v-model="gameForm.field" class="form-control" placeholder="Field" id="field" required="required">
+              <label>Field</label>
+              <select class="form-select" v-model="gameForm.field" aria-label="Field" id="field" required="required">
+                <option value="Green">Green</option>
+                <option value="Purple">Purple</option>
+                <option value="Orange">Orange</option>
+              </select>
             </div>
             <div class="col" id="form">
-              <input type="text" v-model="gameForm.level" class="form-control" placeholder="Level" id="level" required="required">
+              <label>Game Level</label>
+              <select class="form-select" v-model="gameForm.level" aria-label="Level" id="level" required="required">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
             </div>
           </div>
-          <button class="btn btn-outline-secondary btn-sm" type="submit">Add</button>
+          <button class="btn btn-outline-secondary btn-sm" type="submit">Edit</button>
           <button class="btn btn-outline-secondary btn-sm" type="button" v-if="selectedGame" v-on:click="resetGameForm">Cancel</button>
         </form>
 
         <div v-if="selectedGameAssign">
           <h4>Assigned Referees</h4>
-          <table data-sortable class="table table-hover table-responsive-sm">
+          <table class="table table-hover table-responsive-sm">
               <thead>
                   <tr>
-                    <!-- <th scope="col">Game ID</th> -->
                     <th scope="col">Date</th>
                     <th scope="col">Time</th>
-                    <th scope="col">Ref status</th>
+                    <th scope="col">Referee status</th>
                     <th scope="col">Referee Name</th>
                     <th scope="col">Change Assignments</th>
                   </tr>
               </thead>
               <tbody>
                   <tr v-for="a in assignedGames">
-                      <!-- <td>{{r.ref_id}}</td> -->
-                      <!-- <td>{{a.game_id}}</td> -->
                       <td>{{a.date}}</td>
                       <td>{{a.time}}</td>
                       <td>{{a.assign_status}}</td>
-                      <td>{{a.first_name}}</td>
+                      <td>{{a.first_name}} {{a.last_name}}</td>
                       <td> 
                         <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="selectAssignToEdit(a)" :class="['form', {selected: selectedAssign}]">Edit</button>
                         <button type="button" class="btn btn-outline-secondary btn-sm" v-on:click="postDeleteAssign(a)">Delete</button>
@@ -157,19 +170,19 @@
             <h5>{{ selectedAssign === null ? "Assign New Referee" : "Edit Assigned Referee"}}</h5>
             <div class="row">
               <div class="col" id="form">
+                <label>Pick the Referee</label>
                 <select class="form-select" v-model="assignForm.ref_assign_id" aria-label="Pick the Referee" id="ref_assign_id" required="required">
-                  <option v-for="r in refs" :value= 'r.ref_id' >{{ r.first_name }}</option>
+                  <option v-for="r in refs" :value= 'r.ref_id' >{{ r.first_name }} {{r.last_name}}</option>
                 </select>
               </div>
               <div class="col">
+                <label>Referee Assignment Status</label>
                 <select class="form-select" v-model="assignForm.assign_status" aria-label="Assign Status" id="assign_status" required="required">
-                  <!-- <option selected>Pick status</option> -->
                   <option value="Tentative">Tentative</option>
                   <option value="Assigned">Assigned</option>
                   <option value="Unassigned">Unassigned</option>
                   <option value="Accepted">Accepted</option>
                 </select>
-                <!-- <input type="text" v-model="assignForm.assign_status" class="form-control" placeholder="Assign Status" id="assign_status" required="required"> -->
               </div>
             </div>
             <button class="btn btn-outline-secondary btn-sm" type="submit">{{ selectedAssign === null ? "Assign" : "Edit"}}</button>
@@ -179,22 +192,14 @@
       </div>
 
       <footer class="customFooter">
-        <div class="row">
-        
-
-          <div class='container'>
-          © 2021 | Indiana Soccer Referees Association | All Rights Reserved
-          </div>
-          <div class='container'>
-          <a href='t&c.html'> Terms & Conditions | </a>
-          <a href='pp.html'> Privacy Policy</a>
-          </div>
-        </div>
+        <div class='container'>
+            © 2021 | Indiana Soccer Referees Association | All Rights Reserved
+         </div>
       </footer>
     </div>
       
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="js/select_ref.js"></script>
+    <script src="js/index.js"></script>
   </body>
 </html>
