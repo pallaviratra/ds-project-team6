@@ -12,7 +12,7 @@ try {
     exit;
 }
 
-require("class/DbConnection.php"
+require("class/DbConnection.php");
 
 // Step 1: Get a datase connection from our helper class
 $db = DbConnection::getConnection();
